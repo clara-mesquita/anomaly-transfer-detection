@@ -1,0 +1,61 @@
+# Configuração para experimentos de transferência
+
+# Source domain
+source:
+  dataset: electrical_fault
+  path: data/raw/electrical_fault_detection.csv
+  contamination: 0.3  # Higher because source has more labeled anomalies
+  
+# Target domain
+target:
+  dataset: can_bus
+  path: data/raw/can_bus_anomaly_detection.csv
+  contamination: 0.1  # Expected anomaly rate in target
+  
+# Feature alignment
+alignment:
+  method: manual  # manual, auto
+  mapping:
+    Voltage (V): Voltage
+    Current (A): Current
+    Temperature (°C): Temperature
+  common_features_source:
+    - Voltage (V)
+    - Current (A)
+    - Temperature (°C)
+  common_features_target:
+    - Voltage
+    - Current
+    - Temperature
+
+# Transfer strategy
+transfer:
+  strategy: direct  # direct, fine_tune, domain_adaptation
+  freeze_preprocessing: true  # Use source scaler on target
+  adjust_threshold: false  # Adjust contamination threshold based on target
+
+# Experiment configuration
+experiment:
+  run_baseline: true  # Train model directly on target
+  run_transfer: true  # Train on source, apply to target
+  compare_methods: true
+  save_predictions: true
+  
+# Evaluation
+evaluation:
+  use_target_labels: true  # If available
+  metrics:
+    - anomaly_rate
+    - score_statistics
+    - overlap_rate
+    - correlation
+  qualitative:
+    top_n_anomalies: 10
+    visualize_distributions: true
+
+# Output
+output:
+  results_dir: results/transfer_experiments
+  save_models: true
+  save_predictions: true
+  save_visualizations: true

@@ -1,0 +1,54 @@
+# Configuração para treinamento no dataset fonte
+
+# Dataset configuration
+dataset:
+  name: electrical_fault
+  path: data/raw/electrical_fault_detection.csv
+  type: source
+  
+# Features to use
+features:
+  numerical:
+    - Voltage (V)
+    - Current (A)
+    - Temperature (°C)
+    - Power Load (MW)
+  categorical:
+    - Fault Type
+    - Weather Condition
+    - Maintenance Status
+  target: Fault Type
+
+# Preprocessing
+preprocessing:
+  missing_values:
+    strategy: mean  # mean, median, zero, forward, constant
+  scaling:
+    method: standard  # standard, robust, minmax
+  outlier_removal:
+    enabled: false
+    method: iqr  # iqr, zscore
+    threshold: 1.5
+
+# Model configuration
+model:
+  type: isolation_forest
+  params:
+    n_estimators: 100
+    max_samples: auto
+    contamination: 0.1
+    max_features: 1.0
+    random_state: 42
+
+# Training configuration
+training:
+  test_size: 0.2
+  validation_size: 0.0
+  random_state: 42
+  stratify: true
+
+# Output paths
+output:
+  models_dir: models_exported
+  results_dir: results
+  logs_dir: logs

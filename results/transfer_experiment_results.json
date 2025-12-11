@@ -1,0 +1,31 @@
+{
+  "baseline": {
+    "n_anomalies": 4663,
+    "anomaly_rate": 0.10001501404886,
+    "score_mean": -0.07650100563754178,
+    "score_std": 0.04986137518984626,
+    "score_min": -0.15701416357695225,
+    "score_max": 0.10528007863818356,
+    "precision": 1.0,
+    "recall": 0.10001715928102613,
+    "f1": 0.18184654382373014,
+    "roc_auc": 0.6958517438119343
+  },
+  "transfer": {
+    "n_anomalies": 46623,
+    "anomaly_rate": 1.0,
+    "score_mean": 0.11457705430252284,
+    "score_std": 1.3877787807814457e-17,
+    "score_min": 0.11457705430252285,
+    "score_max": 0.11457705430252285,
+    "precision": 0.9999785513587715,
+    "recall": 1.0,
+    "f1": 0.9999892755643734,
+    "roc_auc": 0.5
+  },
+  "comparison": {
+    "overlap_anomalies": 4663,
+    "overlap_rate": 1.0,
+    "score_correlation": 1.893125512161761e-16
+  }
+}

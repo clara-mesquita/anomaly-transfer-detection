@@ -1,0 +1,11 @@
+{
+  "feature_names": [
+    "Voltage (V)",
+    "Current (A)",
+    "Temperature (\u00b0C)",
+    "Power Load (MW)"
+  ],
+  "n_features": 4,
+  "model_type": "isolation_forest",
+  "contamination": 0.1
+}
