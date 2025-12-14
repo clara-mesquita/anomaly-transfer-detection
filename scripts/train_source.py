@@ -41,12 +41,13 @@ def train_source_model(
     logger.info(f"Carregando dataset: {dataset}")
     if dataset == 'electrical_fault':
         loader = ElectricalFaultLoader()
-        X, y = loader.load_preprocessed()
+        # Usar Component Health como label (Normal vs Faulty/Overheated)
+        X, y = loader.load_preprocessed(label_column='Component Health')
     else:
         raise ValueError(f"Dataset não suportado: {dataset}")
     
     logger.info(f"Dados carregados: {X.shape[0]} amostras, {X.shape[1]} features")
-    logger.info(f"Distribuição de labels: {np.bincount(y)}")
+    logger.info(f"Distribuição de labels: Normal={np.sum(y==0)}, Anomalia={np.sum(y==1)}")
     
     # 2. Tratar valores faltantes
     X = handle_missing_values(X, strategy='mean')

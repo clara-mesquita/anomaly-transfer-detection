@@ -11,12 +11,10 @@ Na prática, é muito difícil avaliar detecção de anomalias não supervisiona
 ## Datasets
 
 ### Source
-- **Electrical Fault Detection and Classification**: Dataset principal com 506 registros de falhas elétricas
-- Opcionalmente: NAB, SKAB, New Energy Vehicles, Power System Faults
+- **Power System Faults Dataset**: Dataset principal com 506 registros de falhas elétricas
 
 ### Target
 - **CAN Bus Anomaly Detection Dataset**: 46,623 registros de dados de veículos
-- Opcionalmente: VED, can-train-and-test, Current characteristic train
 
 ## Instalação
 

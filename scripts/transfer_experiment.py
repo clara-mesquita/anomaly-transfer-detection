@@ -46,10 +46,11 @@ def run_transfer_experiment(
     # 1. Carregar dados fonte
     logger.info(f"\n[1/6] Carregando dataset fonte: {source_dataset}")
     source_loader = ElectricalFaultLoader()
-    X_source, y_source = source_loader.load_preprocessed()
+    # Usar Component Health como label
+    X_source, y_source = source_loader.load_preprocessed(label_column='Component Health')
     
     logger.info(f"Fonte: {X_source.shape[0]} amostras, {X_source.shape[1]} features")
-    logger.info(f"Labels: {np.bincount(y_source)}")
+    logger.info(f"Labels: Normal={np.sum(y_source==0)}, Anomalia={np.sum(y_source==1)}")
     
     # 2. Carregar dados alvo
     logger.info(f"\n[2/6] Carregando dataset alvo: {target_dataset}")

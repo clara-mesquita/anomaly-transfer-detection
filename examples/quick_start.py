@@ -21,28 +21,25 @@ from src.models.isolation_forest import IsolationForestDetector
 
 
 def main():
-    print("=" * 80)
     print("EXEMPLO DE USO - DETECÇÃO DE ANOMALIAS COM TRANSFERÊNCIA")
-    print("=" * 80)
-    
-    # 1. Carregar e preparar dados fonte
-    print("\n[1] Carregando dataset fonte (Electrical Fault Detection)...")
+
+    print("\nPower System Faults Dataset...")
     source_loader = ElectricalFaultLoader()
     
     try:
         X_source, y_source = source_loader.load_preprocessed()
-        print(f"✓ Fonte carregado: {X_source.shape[0]} amostras")
+        print(f"Fonte carregado: {X_source.shape[0]} amostras")
     except FileNotFoundError:
-        print("✗ Arquivo não encontrado. Por favor, baixe o dataset do Kaggle.")
-        print("  URL: https://www.kaggle.com/datasets/esathyaprakash/electrical-fault-detection-and-classification")
+        print("Arquivo não encontrado. Por favor, baixe o dataset do Kaggle.")
+        print("URL: https://www.kaggle.com/datasets/ziya07/power-system-faults-dataset")
         return
     
     # Selecionar apenas features que existem no alvo
     common_features_source = ['Voltage (V)', 'Current (A)', 'Temperature (°C)']
     X_source = X_source[common_features_source]
     
-    # 2. Treinar modelo no fonte
-    print("\n[2] Treinando modelo Isolation Forest no dataset fonte...")
+    # Treinar modelo no fonte
+    print("\nTreinando modelo Isolation Forest no dataset fonte...")
     
     # Normalizar
     scaler = TransferScaler(method='standard')
